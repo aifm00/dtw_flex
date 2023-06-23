@@ -8,9 +8,9 @@ def plot_set(obj, vals, range, select = {}, title = "", hide_endpoints = False):
     '''
     visualize, change and select points for each plot defined by each dict (key, value) pair
     :param obj: dtw obj where results are stored dynamically
-    :param vals: dict with data values. Each (key, value) pair represents one subplot
-    :param range: dict with data ranges. Each (key, value) pair represents the bounds of each subplot
-    :param select: dict with selected points. Each (key, value) pair represents the highlighted points for each subplot
+    :param vals: dict with data values. Each (key, value) pair represents one subplot. The keys are attribute names of obj.
+    :param range: list of lists where each sublist holds the minimum and maximun range value for each subplot.
+    :param select: dict with selected/flagged data points. The keys are attribute names of obj.
     :return:
     '''
     def button_press_callback(event):
@@ -158,16 +158,5 @@ def plot_set(obj, vals, range, select = {}, title = "", hide_endpoints = False):
     return vals, range, select
 
 if __name__ == "__main__":
-    plt.ion()
-    N = 10
-    yyvals = np.zeros(N)
-    wwvals = np.ones(N)
-    rrvals = np.zeros(N,dtype=np.int32)
-    vals = {'y':yyvals,'weight':wwvals,'rep':rrvals}
-    range = {'y':[-1,1],'weight':[0,1],'rep':[0,5]}
-
-    vals = {'y':yyvals,'weight':wwvals}
-    range = {'y':[-1,1],'weight':[0,1]}
-    select = {'y':[0],'weight':[]}
-    vals, range, select = plot_set(vals,range, select)
+    None
 

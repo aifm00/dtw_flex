@@ -1,14 +1,19 @@
 from setuptools import setup, find_packages, Extension
 import numpy
 from Cython.Build import cythonize
+from pathlib import Path
+
+dir = Path(__file__).parent
+long_description = (dir / "README.md").read_text()
 
 setup(
     name='dtw_flex',
-    version='0.1',
-    description='',
-    url='https://github.com/username/my_package',
+    version='0.0.1',
+    description='dynamic time warping with amplitude and offset correction',
+    long_description=long_description,
+    url='https://github.com/aifm00/dtw_flex',
     author='Alexander Meire',
-    author_email='Alexander.meire@gmail.com',
+    author_email='alexander.meire@gmail.com',
     license='GPLv3',
     packages=find_packages(),
     ext_modules = cythonize(Extension('dtw_flex.core_cython.dtw_cy',

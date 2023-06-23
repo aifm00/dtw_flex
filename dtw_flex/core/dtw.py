@@ -369,14 +369,6 @@ class Dtw():
         self.a, self.b, self.N, self.sumx, self.sumy, self.sumx2, self.sumy2, self.sumxy, self.cost, self.step = backward_res
         return backward_res
 
-    #def backward_new(self):
-    #    backward_new_res = dtw_backward_new(query=self.query, ref=self.ref, cost=self.cost.copy(), weight=self.weight,
-    #                           step_single=self.step_single, step_multiple=self.step_multiple,
-    #                           step_weight=self.step_weight, rep_step_ref=self.rep_step_ref,
-    #                           rep_step_query=self.rep_step_query)
-    #    self.a, self.b, self.N_query, self.N, self.sumx, self.sumy, self.sumx2, self.sumy2, self.sumxy, self.cost, self.step = backward_new_res
-    #    return backward_new_res
-
     def path(self):
         path_res = dtw_path(step=self.step, step_single=self.step_single, step_multiple=self.step_multiple)
         self.id_ref, self.id_query = path_res
@@ -490,10 +482,6 @@ def detrend(seq, trend = ""):
     return seq_corr
 
 def dtw_prep(wref, wquery, rep_ref, rep_query, symmetry=[], discontinuity=[], proportionality=[]):
-    #wref = dtw_obj.wref
-    #wquery = dtw_obj.wquery
-    #rep_ref = dtw_obj.rep_ref
-    #rep_query = dtw_obj.rep_query
     '''
     dtw_prep creates all necessary input for the dtw algorithm
     :param wref: weight for each point in the reference series.
@@ -752,15 +740,6 @@ def dtw_path(step, step_single, step_multiple):
     return (id_ref, id_query)
 
 def dtw_backward(query, ref, cost, weight, step_single, step_multiple, step_weight, rep_step_ref, rep_step_query):
-    #query = dtw_obj.query
-    #ref = dtw_obj.ref
-    #cost = dtw_obj.cost
-    #weight = dtw_obj.weight
-    #step_single = dtw_obj.step_single
-    #step_multiple = dtw_obj.step_multiple
-    #step_weight = dtw_obj.step_weight
-    #rep_step_ref = dtw_obj.rep_step_ref
-    #rep_step_query = dtw_obj.rep_step_query
     '''
     dtw_backward: scaled dtw algorithm with backward propagation. Find optimal match between (a*ref + b) and query, given weight and step constraints
     :param query: query series
@@ -1251,26 +1230,6 @@ def show_matrix(A):
     cax = ax.matshow(A, interpolation='nearest')
     fig.colorbar(cax)
 
-def test_sequence(ref, query):
-    nref = len(ref)
-    nquery = len(query)
-    dtw_obj = Dtw(nref=nref, nquery=nquery)
-    dtw_obj.flag = np.array([dtw_obj.nref // 2])
-    dtw_obj.query = query
-    dtw_obj.ref = ref
-    dtw_obj.ref_plotset()
-    dtw_obj.query_plotset()
-    dtw_obj.run_dtw(plt_fit = True, plt_match = True)
-
-if __name__ == "__main__":
-    desired_width = 320
-    np.set_printoptions(linewidth=desired_width)
-
-    ref = np.array([0.0,0,1,0,0])
-    query = np.array([ 0.5,  2,  -1,  -3, 1, 10,  3,  4,  -1, 18, 20, 21, 0.5,  4,  -2,  1])
-    test_sequence(ref,query)
-
-    #ref = np.array([0.5,0,0,1,1,0.5])
-    #query = np.array([ 0.5,  2,  -1,  -3, 1, 10 , 15, 18 ,20., 21,  19.,  20,  22, 20, 20, 21, 0.5,  2,  -1,  -3, 1,5,3])
-    #test_sequence(ref,query)
+if __name__ == "__main__":  
+    None
 
