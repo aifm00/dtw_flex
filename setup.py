@@ -3,30 +3,12 @@ import numpy
 from Cython.Build import cythonize
 from pathlib import Path
 
-dir = Path(__file__).parent
-long_description = (dir / "README.md").read_text()
+#dir = Path(__file__).parent
+#long_description = (dir / "README.md").read_text()
 
 setup(
-    name='dtw_flex',
-    version='0.0.1',
-    description='dynamic time warping with amplitude and offset correction',
-    long_description=long_description,
-    url='https://github.com/aifm00/dtw_flex',
-    author='Alexander Meire',
-    author_email='alexander.meire@gmail.com',
-    license='GPLv3',
-    packages=find_packages(),
     ext_modules = cythonize(Extension('dtw_flex.core_cython.dtw_cy',
-          ["dtw_flex/core_cython/dtw_cy.pyx"],
-          include_dirs=[numpy.get_include()])),
-    install_requires=[
-        'Cython',
-        'matplotlib',
-        'numpy',
-        'pandas',
-        'setuptools'
-    ],
-    classifiers=[
-        'Programming Language :: Python :: 3'
-    ],
+        ["dtw_flex/core_cython/dtw_cy.pyx"],
+        include_dirs=[numpy.get_include()])),
+
 )
