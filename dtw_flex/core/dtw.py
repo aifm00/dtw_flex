@@ -1092,8 +1092,12 @@ def dtw_roll(data, nquery, ref, cost, weight, step_single, step_multiple, step_w
 
     # create and select frames
     frames = np.lib.stride_tricks.sliding_window_view(data_dtw, window_shape=nquery)  # np_ext.rolling(block['data'][var].values, win_AO, as_array=True)
-    id_frames = np.arange(0, len(frames) - 1, window_step)  # select subset of sliding windows
-    id_frames = np.append(id_frames, len(frames) - 1)
+    #id_frames = np.arange(0, len(frames) - 1, window_step)  # select subset of sliding windows
+    #id_frames = np.append(id_frames, len(frames) - 1)
+    
+    num_frames = int(np.floor((len(frames)-1) / window_step))
+    id_frames = np.linspace(0, len(frames) - 1, num_frames, dtype=int)
+
     queries = frames[id_frames]
 
     # run dtw

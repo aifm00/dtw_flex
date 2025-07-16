@@ -6,11 +6,11 @@ cimport numpy as np
 np.import_array()
 
 cpdef dtw_backward(
-                    np.ndarray[np.float_t, ndim=1] query, np.ndarray[np.float_t, ndim=1] ref,
-                    np.ndarray[np.float_t, ndim=2] cost, np.ndarray[np.float_t, ndim=2] weight,
-                    np.ndarray[np.int_t, ndim=2] step_single, np.ndarray[np.int_t, ndim=2] step_multiple,
-                    np.ndarray[np.float_t, ndim=1] step_weight,
-                    np.ndarray[np.int_t, ndim=2] rep_step_ref, np.ndarray[np.int_t, ndim=2] rep_step_query):
+                    np.ndarray[np.float64_t, ndim=1] query, np.ndarray[np.float64_t, ndim=1] ref,
+                    np.ndarray[np.float64_t, ndim=2] cost, np.ndarray[np.float64_t, ndim=2] weight,
+                    np.ndarray[np.int64_t, ndim=2] step_single, np.ndarray[np.int64_t, ndim=2] step_multiple,
+                    np.ndarray[np.float64_t, ndim=1] step_weight,
+                    np.ndarray[np.int64_t, ndim=2] rep_step_ref, np.ndarray[np.int64_t, ndim=2] rep_step_query):
 
     ###key dimensions###
     cdef int n, m, rep_lim, n_single, n_multiple, m_multiple
@@ -20,15 +20,15 @@ cpdef dtw_backward(
     m_multiple = np.shape(step_multiple)[1]
     n_multiple = int(np.shape(step_multiple)[0] / 2)
 
-    cdef np.ndarray[np.float_t, ndim=2] a = np.ones((n,m), dtype=np.float_) #type_ = numpy type, type_t = type indentifier
-    cdef np.ndarray[np.float_t, ndim=2] b = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.float_t, ndim=2] N = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.float_t, ndim=2] sumy = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.float_t, ndim=2] sumx = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.float_t, ndim=2] sumy2 = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.float_t, ndim=2] sumx2 = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.float_t, ndim=2] sumxy = np.zeros((n,m), dtype=np.float_)
-    cdef np.ndarray[np.int_t, ndim=2] step = -np.ones((n+1,m+1), dtype=np.int_)
+    cdef np.ndarray[np.float64_t, ndim=2] a = np.ones((n,m), dtype=np.float64) #type_ = numpy type, type_t = type indentifier
+    cdef np.ndarray[np.float64_t, ndim=2] b = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.float64_t, ndim=2] N = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.float64_t, ndim=2] sumy = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.float64_t, ndim=2] sumx = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.float64_t, ndim=2] sumy2 = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.float64_t, ndim=2] sumx2 = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.float64_t, ndim=2] sumxy = np.zeros((n,m), dtype=np.float64)
+    cdef np.ndarray[np.int64_t, ndim=2] step = -np.ones((n+1,m+1), dtype=np.int64)
 
     #cdef Py_ssize_t i, ii, j, jj, k, r, s
     cdef int i, ii, j, jj, i_s, j_s, k, r, s
